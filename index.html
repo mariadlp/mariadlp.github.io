@@ -3,14 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web Personal</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #0077cc; }
-    </style>
+    <title>Currículum de Investigación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jelly"></script>
 </head>
 <body>
-    <h1>¡Hola, soy María!</h1>
-    <p>Bienvenido a mi página personal.</p>
+    <header>
+        <div class="container">
+            <h1 class="jelly">María Dolón-Poza</h1>
+            <p class="jelly">PhD Candidate | Associate Professor | Cybersecurity in eHealth</p>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="jelly">About me</h2>
+            <p class="jelly">I received my B.Sc. in Telematics Engineering and M.Sc. in Cybersecurity from the Universidad Politécnica de Madrid (UPM), Madrid, Spain.
+                I am currently a PhD candidate working as a researcher in the InnoTep group at the UPM. My research focuses on developing innovative tools that bridge the gap 
+                between clinical expertise and educational environments, aiming to promote early intervention strategies for children with neurodevelopmental challenges. 
+                
+                Additionally, my research activity centers on clinical data protection through the creation of collaborative systems in therapeutic environments, 
+                leveraging the principles of Zero Trust and Consensus-based Systems.</p>
+        </div>
+    </section>
+
+    <!-- Continúa con el resto de tu contenido -->
+
+    <footer>
+        <div class="container">
+            <p class="jelly">&copy; 2025 María Dolón-Poza</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animaciones de Jelly para los encabezados
+        Jelly('.jelly', {
+            type: 'bounce', // Puedes cambiar esto por 'fade', 'zoom', 'flip', etc.
+            duration: 1000, // Duración de la animación
+            delay: 300, // Retraso entre las animaciones
+            easing: 'ease-out', // Tipo de transición
+        });
+    </script>
 </body>
 </html>
