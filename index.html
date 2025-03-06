@@ -6,43 +6,66 @@
     <title>Currículum de Investigación</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jelly"></script>
 </head>
 <body>
     <header>
-        <div class="container">
+        <div class="container text-center">
             <h1 class="jelly">María Dolón-Poza</h1>
             <p class="jelly">PhD Candidate | Associate Professor | Cybersecurity in eHealth</p>
         </div>
     </header>
-
+    
     <section id="about">
-        <div class="container">
-            <h2 class="jelly">About me</h2>
-            <p class="jelly">I received my B.Sc. in Telematics Engineering and M.Sc. in Cybersecurity from the Universidad Politécnica de Madrid (UPM), Madrid, Spain.
-                I am currently a PhD candidate working as a researcher in the InnoTep group at the UPM. My research focuses on developing innovative tools that bridge the gap 
-                between clinical expertise and educational environments, aiming to promote early intervention strategies for children with neurodevelopmental challenges. 
+        <div class="container about-container">
+            <div class="text">
+                <h2 class="jelly">About me</h2>
+                <p class="jelly">
+                    I received my B.Sc. in Telematics Engineering and M.Sc. in Cybersecurity from the Universidad Politécnica de Madrid (UPM), Madrid, Spain.
+                    I am currently a PhD candidate working as a researcher in the InnoTep group at the UPM. My research focuses on developing innovative tools that bridge the gap 
+                    between clinical expertise and educational environments, aiming to promote early intervention strategies for children with neurodevelopmental challenges.
+                </p>
+                <p class="jelly">
+                    Additionally, my research activity centers on clinical data protection through the creation of collaborative systems in therapeutic environments, 
+                    leveraging the principles of Zero Trust and Consensus-based Systems.
+                </p>
                 
-                Additionally, my research activity centers on clinical data protection through the creation of collaborative systems in therapeutic environments, 
-                leveraging the principles of Zero Trust and Consensus-based Systems.</p>
+                <p class="paragraph-ch text-center">
+                    <a href="mailto:maria.dolonp@upm.es" class="btn-icon" target="_blank">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=oN9jtOMAAAAJ&hl=es" class="btn-icon" target='_blank' title='My Google Scholar'>
+                        <i class="ai ai-google-scholar fa-2x"></i>
+                    </a>
+                    <a href="https://github.com/mariadlp" class="btn-icon" target="_blank" title='My GitHub'>
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mariadolon/" class="btn-icon" target="_blank" title='My LinkedIn'>
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                </p>
+            </div>
+
+            <div class="profile-picture">
+                <img src="images/Profilepicture-2.png" alt="María Dolón-Poza">
+            </div>
         </div>
     </section>
 
-    <!-- Continúa con el resto de tu contenido -->
-
     <footer>
-        <div class="container">
+        <div class="container text-center">
             <p class="jelly">&copy; 2025 María Dolón-Poza</p>
         </div>
     </footer>
 
     <script>
-        // Animaciones de Jelly para los encabezados
+        // Animaciones de Jelly para los encabezados y párrafos
         Jelly('.jelly', {
-            type: 'bounce', // Puedes cambiar esto por 'fade', 'zoom', 'flip', etc.
-            duration: 1000, // Duración de la animación
-            delay: 300, // Retraso entre las animaciones
-            easing: 'ease-out', // Tipo de transición
+            type: 'fade',
+            duration: 1000,
+            delay: 200,
+            easing: 'ease-in-out',
         });
     </script>
 </body>
