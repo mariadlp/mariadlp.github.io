@@ -76,3 +76,48 @@ footer {
     padding: 20px 0;
     margin-top: 50px;
 }
+
+/* Sección Educación */
+#education {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+}
+
+.timeline li {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #2c3e50;
+}
+
+/* Sección Publicaciones */
+#publications {
+    padding: 50px 0;
+}
+
+.publication-list {
+    list-style: none;
+    padding: 0;
+}
+
+.publication-list li {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #3498db;
+}
+
+.publication-list a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.publication-list a:hover {
+    text-decoration: underline;
+}
+
