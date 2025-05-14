@@ -1,3 +1,4 @@
+
 /* Reset básico */
 body {
     font-family: 'Roboto', sans-serif;
@@ -124,3 +125,33 @@ footer {
     text-decoration: underline;
 }
 
+/* Botón Volver arriba */
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #38213b;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .profile-picture, .text {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
