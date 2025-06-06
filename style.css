@@ -232,7 +232,7 @@ header {
   text-align: center;
 }
 
-.social-link {
+.social-links-group .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -246,9 +246,9 @@ header {
   font-size: 1.25rem;
 }
 
-.social-link:hover {
-  background-color: #C76ACE;
-  color: white;
+.social-links-group .social-link:hover {
+  background-color: #C76ACE !important;
+  color: white !important;
   transform: translateY(-2px);
 }
 
