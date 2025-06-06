@@ -443,3 +443,14 @@ header {
     max-width: none;
   }
 }
+
+/* Research Area Icons */
+.text-research {
+  color: #C76ACE;
+}
+
+.card:hover .text-research {
+  color: #E9A2EF;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
