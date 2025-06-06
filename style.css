@@ -1,8 +1,8 @@
 /* Base styles */
 :root {
   /* Light theme variables */
-  --primary-color: #C76ACE;
-  --secondary-color: #b44ebb;
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
   --text-color: #1f2937;
   --bg-color: #ffffff;
   --light-bg: #f9fafb;
@@ -72,7 +72,7 @@ nav a::after {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #C76ACE;
+  background-color: var(--primary-color);
   transition: width 0.3s ease;
 }
 
@@ -224,11 +224,10 @@ header {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #C76ACE;
-  opacity: 0.9;
+  color: var(--text-color);
+  opacity: 0.7;
   margin-bottom: 0.5rem;
   text-align: center;
-  font-weight: 600;
 }
 
 .social-link {
@@ -239,16 +238,16 @@ header {
   height: 3rem;
   border-radius: 9999px;
   transition: var(--transition);
-  background-color: rgba(199, 106, 206, 0.1);
-  color: #C76ACE;
+  background-color: var(--light-bg);
+  color: var(--text-color);
   position: relative;
   font-size: 1.25rem;
 }
 
-.social-link i {
-  font-size: inherit;
-  width: auto;
-  height: auto;
+.social-link:hover {
+  background-color: #C76ACE;
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* Specific style for Bluesky icon */
@@ -364,11 +363,10 @@ header {
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  background-color: rgba(199, 106, 206, 0.1);
-  color: #C76ACE;
+  background-color: var(--light-bg);
+  color: var(--text-color);
   margin: 0.25rem;
   transition: var(--transition);
-  font-weight: 500;
 }
 
 .skill-tag:hover {
@@ -460,19 +458,19 @@ header {
 
 /* Button styles */
 .btn-primary {
-  background-color: #C76ACE;
+  background-color: var(--primary-color);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #b44ebb;
+  background-color: var(--secondary-color);
 }
 
 .btn-outline {
-  border-color: #C76ACE;
-  color: #C76ACE;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .btn-outline:hover {
-  background-color: rgba(199, 106, 206, 0.1);
+  background-color: var(--light-bg);
 }
