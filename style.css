@@ -474,3 +474,14 @@ header {
 .btn-outline:hover {
   background-color: var(--light-bg);
 }
+
+/* Education Timeline */
+.education-year {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--light-bg);
+  color: #48264A;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
