@@ -1,8 +1,8 @@
 /* Base styles */
 :root {
   /* Light theme variables */
-  --primary-color: #2563eb;
-  --secondary-color: #1e40af;
+  --primary-color: #C76ACE;
+  --secondary-color: #b44ebb;
   --text-color: #1f2937;
   --bg-color: #ffffff;
   --light-bg: #f9fafb;
@@ -72,7 +72,7 @@ nav a::after {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--primary-color);
+  background-color: #C76ACE;
   transition: width 0.3s ease;
 }
 
@@ -161,7 +161,7 @@ header {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(199, 106, 206, 0.1), 0 10px 10px -5px rgba(199, 106, 206, 0.06);
 }
 
 /* Publication Cards */
@@ -172,9 +172,8 @@ header {
 }
 
 .publication-card:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-5px);
   box-shadow: 0 20px 25px -5px rgba(199, 106, 206, 0.1), 0 10px 10px -5px rgba(199, 106, 206, 0.06);
-  border-color: #C76ACE;
 }
 
 .publication-year-tag {
@@ -225,10 +224,11 @@ header {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text-color);
-  opacity: 0.7;
+  color: #C76ACE;
+  opacity: 0.9;
   margin-bottom: 0.5rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .social-link {
@@ -239,8 +239,8 @@ header {
   height: 3rem;
   border-radius: 9999px;
   transition: var(--transition);
-  background-color: var(--light-bg);
-  color: var(--text-color);
+  background-color: rgba(199, 106, 206, 0.1);
+  color: #C76ACE;
   position: relative;
   font-size: 1.25rem;
 }
@@ -364,14 +364,15 @@ header {
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  background-color: var(--light-bg);
-  color: var(--text-color);
+  background-color: rgba(199, 106, 206, 0.1);
+  color: #C76ACE;
   margin: 0.25rem;
   transition: var(--transition);
+  font-weight: 500;
 }
 
 .skill-tag:hover {
-  background-color: var(--primary-color);
+  background-color: #C76ACE;
   color: white;
   transform: translateY(-2px);
 }
@@ -452,7 +453,26 @@ header {
 }
 
 .card:hover .text-research {
-  color: #E9A2EF;
+  color: #C76ACE;
   transform: scale(1.1);
   transition: all 0.3s ease;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #C76ACE;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #b44ebb;
+}
+
+.btn-outline {
+  border-color: #C76ACE;
+  color: #C76ACE;
+}
+
+.btn-outline:hover {
+  background-color: rgba(199, 106, 206, 0.1);
 }
