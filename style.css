@@ -85,12 +85,10 @@ header {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: 
-    linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
-  background-size: cover;
-  background-position: center;
   position: relative;
   overflow: hidden;
+  background-color: #F7CDFF;
+  background-image: linear-gradient(120deg, #F7CDFF 0%, #ffffff 100%);
 }
 
 [data-theme="dark"] header {
@@ -105,8 +103,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  opacity: 0.4;
+  overflow: hidden;
 }
 
 .animated-bg span {
@@ -114,22 +111,22 @@ header {
   display: block;
   width: 20px;
   height: 20px;
-  background: var(--primary-color);
-  animation: move 25s linear infinite;
+  background: rgba(199, 106, 206, 0.1);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
   border-radius: 50%;
 }
 
-@keyframes move {
+@keyframes animate {
   0% {
-    transform: translateY(100vh) scale(0);
-    opacity: 0;
-  }
-  50% {
+    transform: translateY(0) rotate(0deg);
     opacity: 1;
+    border-radius: 0;
   }
   100% {
-    transform: translateY(-100vh) scale(1);
+    transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
+    border-radius: 50%;
   }
 }
 
