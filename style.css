@@ -177,6 +177,30 @@ header {
 }
 
 /* Social Links */
+.social-links-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-group-title {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
 .social-link {
   display: inline-flex;
   align-items: center;
@@ -187,12 +211,94 @@ header {
   transition: var(--transition);
   background-color: var(--light-bg);
   color: var(--text-color);
+  position: relative;
 }
 
-.social-link:hover {
-  background-color: var(--primary-color);
+.social-link::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: 0.5rem 1rem;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--text-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.social-link:hover::before,
+.social-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Brand Colors */
+.social-link[data-brand="email"]:hover {
+  background-color: #EA4335;
   color: white;
-  transform: translateY(-2px);
+}
+
+.social-link[data-brand="github"]:hover {
+  background-color: #171515;
+  color: white;
+}
+
+.social-link[data-brand="linkedin"]:hover {
+  background-color: #0077B5;
+  color: white;
+}
+
+.social-link[data-brand="scholar"]:hover {
+  background-color: #4285F4;
+  color: white;
+}
+
+.social-link[data-brand="twitter"]:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.social-link[data-brand="instagram"]:hover {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  color: white;
+}
+
+.social-link[data-brand="bluesky"]:hover {
+  background-color: #0085FF;
+  color: white;
+}
+
+/* Dark mode adjustments for tooltips */
+[data-theme="dark"] .social-link::before {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .social-link::after {
+  border-top-color: var(--card-bg);
 }
 
 /* Theme Toggle Button */
