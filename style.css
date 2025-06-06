@@ -214,6 +214,23 @@ header {
   background-color: var(--light-bg);
   color: var(--text-color);
   position: relative;
+  font-size: 1.25rem;
+}
+
+.social-link i {
+  font-size: inherit;
+  width: auto;
+  height: auto;
+}
+
+/* Specific style for Bluesky icon */
+.social-link[data-brand="bluesky"] i {
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.social-link[data-brand="bluesky"]:hover i {
+  color: white;
 }
 
 .social-link::before {
