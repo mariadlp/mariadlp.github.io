@@ -224,12 +224,18 @@ header {
 }
 
 /* Specific style for Bluesky icon */
-.social-link[data-brand="bluesky"] i {
-  color: var(--text-color);
-  font-size: 1.5rem;
+.bluesky-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.social-link[data-brand="bluesky"]:hover i {
+.social-link[data-brand="bluesky"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link[data-brand="bluesky"]:hover .bluesky-icon {
   color: white;
 }
 
