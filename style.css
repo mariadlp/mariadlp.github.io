@@ -182,6 +182,7 @@ header {
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+  width: 100%;
 }
 
 .social-group {
@@ -189,6 +190,7 @@ header {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  width: 100%;
 }
 
 .social-group-title {
@@ -254,40 +256,22 @@ header {
   transform: translateX(-50%) translateY(0);
 }
 
-/* Brand Colors */
-.social-link[data-brand="email"]:hover {
-  background-color: #EA4335;
+/* Brand Colors - All using the same hover color now */
+.social-link[data-brand="email"]:hover,
+.social-link[data-brand="github"]:hover,
+.social-link[data-brand="linkedin"]:hover,
+.social-link[data-brand="scholar"]:hover,
+.social-link[data-brand="twitter"]:hover,
+.social-link[data-brand="bluesky"]:hover {
+  background-color: #E9A2EF;
   color: white;
-}
-
-.social-link[data-brand="github"]:hover {
-  background-color: #171515;
-  color: white;
-}
-
-.social-link[data-brand="linkedin"]:hover {
-  background-color: #0077B5;
-  color: white;
-}
-
-.social-link[data-brand="scholar"]:hover {
-  background-color: #4285F4;
-  color: white;
-}
-
-.social-link[data-brand="twitter"]:hover {
-  background-color: #000000;
-  color: white;
+  transform: translateY(-2px);
 }
 
 .social-link[data-brand="instagram"]:hover {
-  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  background: #E9A2EF;
   color: white;
-}
-
-.social-link[data-brand="bluesky"]:hover {
-  background-color: #0085FF;
-  color: white;
+  transform: translateY(-2px);
 }
 
 /* Dark mode adjustments for tooltips */
