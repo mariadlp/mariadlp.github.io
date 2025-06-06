@@ -173,25 +173,27 @@ header {
 
 .publication-card:hover {
   transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 20px 25px -5px rgba(233, 162, 239, 0.1), 0 10px 10px -5px rgba(233, 162, 239, 0.06);
-  border-color: #E9A2EF;
+  box-shadow: 0 20px 25px -5px rgba(199, 106, 206, 0.1), 0 10px 10px -5px rgba(199, 106, 206, 0.06);
+  border-color: #C76ACE;
 }
 
 .publication-year-tag {
-  background-color: rgba(233, 162, 239, 0.1);
-  color: #E9A2EF;
+  background-color: rgba(199, 106, 206, 0.15);
+  color: #C76ACE;
+  font-weight: 600;
 }
 
 .publication-link {
-  color: #E9A2EF;
+  color: #C76ACE;
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 500;
 }
 
 .publication-link:hover {
-  color: #d575df;
+  color: #b44ebb;
 }
 
 .publication-link i {
