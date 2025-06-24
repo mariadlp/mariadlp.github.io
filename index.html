@@ -356,18 +356,6 @@
       });
       // Solo los 8 primeros
       filtered.slice(0, 8).forEach(entry => {
-        // Crea la tarjeta
-        const card = document.createElement('div');
-        card.className = 'publication-card bg-white rounded-lg shadow-md p-6 cursor-pointer transition hover:shadow-lg';
-        // Extrae el año
-        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
-        // Añade la etiqueta de año si existe
-        if (entryYear) {
-          const yearTag = document.createElement('span');
-          yearTag.className = 'publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4';
-          yearTag.textContent = entryYear;
-          card.appendChild(yearTag);
-        }
         // Extrae título, autores, fuente y enlace del HTML de Zotero
         const temp = document.createElement('div');
         temp.innerHTML = entry.innerHTML;
@@ -402,43 +390,56 @@
             title = plain;
           }
         }
-        // Crea el bloque de título
+        // Crea el contenido de la tarjeta
+        const cardContent = document.createElement('div');
+        cardContent.className = 'publication-card bg-white rounded-lg shadow-md p-6 h-full flex flex-col';
+        // Extrae el año
+        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
+        if (entryYear) {
+          const yearTag = document.createElement('span');
+          yearTag.className = 'publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4';
+          yearTag.textContent = entryYear;
+          cardContent.appendChild(yearTag);
+        }
+        // Título
         const h3 = document.createElement('h3');
         h3.className = 'text-lg font-bold mb-2';
         h3.textContent = title;
-        card.appendChild(h3);
+        cardContent.appendChild(h3);
         // Autores
         if (authors) {
           const pAuthors = document.createElement('p');
           pAuthors.className = 'text-gray-600 mb-2';
           pAuthors.textContent = authors;
-          card.appendChild(pAuthors);
+          cardContent.appendChild(pAuthors);
         }
         // Fuente (revista/congreso)
         if (source) {
           const p = document.createElement('p');
           p.className = 'text-gray-500 mb-4 italic';
           p.textContent = source;
-          card.appendChild(p);
+          cardContent.appendChild(p);
         }
         // Enlace externo
         if (link) {
           const aTag = document.createElement('a');
           aTag.href = link;
-          aTag.className = 'publication-link hover:text-blue-800';
+          aTag.className = 'publication-link hover:text-blue-800 mt-auto';
           aTag.target = '_blank';
           aTag.rel = 'noopener noreferrer';
           aTag.innerHTML = '<i class="fas fa-external-link-alt"></i>Read Paper';
-          card.appendChild(aTag);
-          // Hace toda la tarjeta clicable
-          card.addEventListener('click', function(e) {
-            // Evita doble apertura si se hace click en el enlace interno
-            if (!e.target.closest('a')) {
-              window.open(link, '_blank');
-            }
-          });
+          cardContent.appendChild(aTag);
+          // Ahora envuelve toda la tarjeta en un <a>
+          const cardLink = document.createElement('a');
+          cardLink.href = link;
+          cardLink.target = '_blank';
+          cardLink.rel = 'noopener noreferrer';
+          cardLink.className = 'block h-full';
+          cardLink.appendChild(cardContent);
+          container.appendChild(cardLink);
+        } else {
+          container.appendChild(cardContent);
         }
-        container.appendChild(card);
       });
     }
 
