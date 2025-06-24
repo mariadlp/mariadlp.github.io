@@ -368,10 +368,11 @@
           yearTag.textContent = entryYear;
           card.appendChild(yearTag);
         }
-        // Extrae título, fuente y enlace del HTML de Zotero
+        // Extrae título, autores, fuente y enlace del HTML de Zotero
         const temp = document.createElement('div');
         temp.innerHTML = entry.innerHTML;
         let title = '';
+        let authors = '';
         let source = '';
         let link = '';
         const a = temp.querySelector('a');
@@ -382,28 +383,41 @@
         if (i) {
           source = i.textContent;
         }
-        const spanTitle = temp.querySelector('span.title');
-        if (spanTitle) {
-          title = spanTitle.textContent;
+        // El texto plano de la cita
+        let plain = temp.textContent.trim();
+        // Elimina [X] al principio
+        plain = plain.replace(/^\s*\[\d+\]\s*/, '');
+        // Extrae autores y título usando comillas
+        let match = plain.match(/^(.+?)['"“](.+?)['"”]/);
+        if (match) {
+          authors = match[1].trim().replace(/,$/, ''); // quita coma final
+          title = match[2].trim();
         } else {
-          const html = temp.innerHTML;
-          if (i) {
-            title = html.split(i.outerHTML)[0].replace(/<[^>]+>/g, '').trim();
+          // fallback: todo antes de la primera coma es autores, después título
+          let parts = plain.split(',');
+          if (parts.length > 1) {
+            authors = parts[0].trim();
+            title = parts.slice(1).join(',').trim();
           } else {
-            title = temp.textContent.trim();
+            title = plain;
           }
         }
-        // Elimina [X] al principio del título
-        title = title.replace(/^\s*\[\d+\]\s*/, '');
         // Crea el bloque de título
         const h3 = document.createElement('h3');
-        h3.className = 'text-lg font-semibold mb-3';
+        h3.className = 'text-lg font-bold mb-2';
         h3.textContent = title;
         card.appendChild(h3);
+        // Autores
+        if (authors) {
+          const pAuthors = document.createElement('p');
+          pAuthors.className = 'text-gray-600 mb-2';
+          pAuthors.textContent = authors;
+          card.appendChild(pAuthors);
+        }
         // Fuente (revista/congreso)
         if (source) {
           const p = document.createElement('p');
-          p.className = 'text-gray-600 mb-4';
+          p.className = 'text-gray-500 mb-4 italic';
           p.textContent = source;
           card.appendChild(p);
         }
