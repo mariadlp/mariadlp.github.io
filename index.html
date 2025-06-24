@@ -291,21 +291,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    const yearFilter = document.getElementById('year-filter');
-    const publications = document.querySelectorAll('.publication-card');
-    
-    yearFilter.addEventListener('change', () => {
-      const selectedYear = yearFilter.value;
-      
-      publications.forEach(pub => {
-        if (selectedYear === 'all' || pub.dataset.year === selectedYear) {
-          pub.style.display = 'block';
-        } else {
-          pub.style.display = 'none';
-        }
-      });
-    });
-
     const themeToggle = document.querySelector('.theme-toggle');
     const html = document.documentElement;
     const themeIcon = themeToggle.querySelector('i');
@@ -334,120 +319,88 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    const userId = '17438267'; 
-    const style = 'ieee'; // Puedes cambiar el estilo: apa, ieee, vancouver, etc.
+    const userId = '17438267';
 
-    let zoteroEntries = []; // Aquí guardaremos todas las entradas
+    let zoteroItems = [];
     let zoteroYears = new Set();
 
     function renderZoteroEntries(year = 'all') {
       const container = document.getElementById('bibliografia');
       container.innerHTML = '';
       // Filtra por año si corresponde
-      let filtered = zoteroEntries.filter(entry => {
-        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
-        return year === 'all' || entryYear === year;
+      let filtered = zoteroItems.filter(item => {
+        const itemYear = item.data.date ? (item.data.date.match(/\b(19|20)\d{2}\b/) || [])[0] : '';
+        return year === 'all' || itemYear === year;
       });
-      // Ordena por año descendente (más reciente primero)
+      // Ordena por año descendente
       filtered.sort((a, b) => {
-        const yearA = (a.textContent.match(/\b(19|20)\d{2}\b/) || [0])[0];
-        const yearB = (b.textContent.match(/\b(19|20)\d{2}\b/) || [0])[0];
+        const yearA = a.data.date ? (a.data.date.match(/\b(19|20)\d{2}\b/) || [0])[0] : 0;
+        const yearB = b.data.date ? (b.data.date.match(/\b(19|20)\d{2}\b/) || [0])[0] : 0;
         return yearB - yearA;
       });
       // Solo los 8 primeros
-      filtered.slice(0, 8).forEach(entry => {
-        // Extrae título, autores, fuente y enlace del HTML de Zotero
-        const temp = document.createElement('div');
-        temp.innerHTML = entry.innerHTML;
-        let title = '';
-        let authors = '';
-        let source = '';
-        let link = '';
-        const a = temp.querySelector('a');
-        if (a) {
-          link = a.href;
+      filtered.slice(0, 8).forEach(item => {
+        const data = item.data;
+        const year = data.date ? (data.date.match(/\b(19|20)\d{2}\b/) || [])[0] : '';
+        const title = data.title || '';
+        const authors = (data.creators || []).map(c => c.lastName ? `${c.firstName ? c.firstName + ' ' : ''}${c.lastName}` : '').join(', ');
+        const publication = data.publicationTitle || data.bookTitle || data.proceedingsTitle || data.journalAbbreviation || '';
+        const url = data.url || '';
+        // Crea la tarjeta
+        const card = document.createElement('div');
+        card.className = 'publication-card bg-white rounded-lg shadow-md p-6 h-full flex flex-col cursor-pointer transition hover:shadow-lg';
+        // Redirección al hacer click en la tarjeta si hay url
+        if (url) {
+          card.addEventListener('click', (e) => {
+            // Evita que el click en el enlace interno lo dispare dos veces
+            if (!e.target.closest('a')) {
+              window.open(url, '_blank');
+            }
+          });
         }
-        const i = temp.querySelector('i');
-        if (i) {
-          source = i.textContent;
-        }
-        // El texto plano de la cita
-        let plain = temp.textContent.trim();
-        // Elimina [X] al principio
-        plain = plain.replace(/^\s*\[\d+\]\s*/, '');
-        // Extrae autores y título usando comillas
-        let match = plain.match(/^(.+?)['"“](.+?)['"”]/);
-        if (match) {
-          authors = match[1].trim().replace(/,$/, ''); // quita coma final
-          title = match[2].trim();
-        } else {
-          // fallback: todo antes de la primera coma es autores, después título
-          let parts = plain.split(',');
-          if (parts.length > 1) {
-            authors = parts[0].trim();
-            title = parts.slice(1).join(',').trim();
-          } else {
-            title = plain;
-          }
-        }
-        // Crea el contenido de la tarjeta
-        const cardContent = document.createElement('div');
-        cardContent.className = 'publication-card bg-white rounded-lg shadow-md p-6 h-full flex flex-col';
-        // Extrae el año
-        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
-        if (entryYear) {
+        // Año
+        if (year) {
           const yearTag = document.createElement('span');
           yearTag.className = 'publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4';
-          yearTag.textContent = entryYear;
-          cardContent.appendChild(yearTag);
+          yearTag.textContent = year;
+          card.appendChild(yearTag);
         }
         // Título
         const h3 = document.createElement('h3');
         h3.className = 'text-lg font-bold mb-2';
         h3.textContent = title;
-        cardContent.appendChild(h3);
+        card.appendChild(h3);
         // Autores
         if (authors) {
           const pAuthors = document.createElement('p');
           pAuthors.className = 'text-gray-600 mb-2';
           pAuthors.textContent = authors;
-          cardContent.appendChild(pAuthors);
+          card.appendChild(pAuthors);
         }
-        // Fuente (revista/congreso)
-        if (source) {
+        // Fuente
+        if (publication) {
           const p = document.createElement('p');
           p.className = 'text-gray-500 mb-4 italic';
-          p.textContent = source;
-          cardContent.appendChild(p);
+          p.textContent = publication;
+          card.appendChild(p);
         }
         // Enlace externo
-        if (link) {
+        if (url) {
           const aTag = document.createElement('a');
-          aTag.href = link;
+          aTag.href = url;
           aTag.className = 'publication-link hover:text-blue-800 mt-auto';
           aTag.target = '_blank';
           aTag.rel = 'noopener noreferrer';
           aTag.innerHTML = '<i class="fas fa-external-link-alt"></i>Read Paper';
-          cardContent.appendChild(aTag);
-          // Ahora envuelve toda la tarjeta en un <a>
-          const cardLink = document.createElement('a');
-          cardLink.href = link;
-          cardLink.target = '_blank';
-          cardLink.rel = 'noopener noreferrer';
-          cardLink.className = 'block h-full';
-          cardLink.appendChild(cardContent);
-          container.appendChild(cardLink);
-        } else {
-          container.appendChild(cardContent);
+          card.appendChild(aTag);
         }
+        container.appendChild(card);
       });
     }
 
     function populateYearFilter() {
       const yearFilter = document.getElementById('year-filter');
-      // Elimina todas las opciones excepto "All years"
       yearFilter.innerHTML = '<option value="all">All years</option>';
-      // Ordena los años de mayor a menor
       const yearsSorted = Array.from(zoteroYears).sort((a, b) => b - a);
       yearsSorted.forEach(year => {
         const option = document.createElement('option');
@@ -457,26 +410,24 @@
       });
     }
 
-    fetch(`https://api.zotero.org/users/${userId}/items?format=bib&style=${style}`)
-      .then(response => response.text())
+    fetch(`https://api.zotero.org/users/${userId}/items?format=json`)
+      .then(response => response.json())
       .then(data => {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = data;
-        zoteroEntries = Array.from(tempDiv.querySelectorAll('.csl-entry'));
+        zoteroItems = data;
         zoteroYears = new Set();
-        zoteroEntries.forEach(entry => {
-          const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
-          if (entryYear) zoteroYears.add(entryYear);
+        zoteroItems.forEach(item => {
+          const year = item.data.date ? (item.data.date.match(/\b(19|20)\d{2}\b/) || [])[0] : '';
+          if (year) zoteroYears.add(year);
         });
         populateYearFilter();
-        renderZoteroEntries(); // Muestra todos al principio
+        renderZoteroEntries();
       })
       .catch(error => {
         document.getElementById('bibliografia').innerHTML = 'No se pudo cargar la bibliografía.';
         console.error(error);
       });
 
-    // Filtro de año para Zotero
+    const yearFilter = document.getElementById('year-filter');
     yearFilter.addEventListener('change', () => {
       const selectedYear = yearFilter.value;
       renderZoteroEntries(selectedYear);
