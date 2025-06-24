@@ -136,73 +136,14 @@
   <section id="publications" class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center" data-aos="fade-up">Scientific Articles</h2>
+      <ul id="bibliografia"></ul>
 
       <div class="mb-8 flex justify-center" data-aos="fade-up">
         <div class="inline-flex rounded-md shadow-sm">
           <select id="year-filter" class="bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="all">All years</option>
-            <option value="2025">2025</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
+            <!-- Las opciones de año se generarán automáticamente -->
           </select>
-        </div>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2025" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2025</span>
-          <h3 class="text-lg font-semibold mb-3">Enhancing Early Language Disorder Detection in Preschools</h3>
-          <p class="text-gray-600 mb-4">JMIR Human Factors</p>
-          <a href="https://humanfactors.jmir.org/2025/1/e60424" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2025" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2025</span>
-          <h3 class="text-lg font-semibold mb-3">Enhancing Preschool Language Acquisition Through Robotic Assistants</h3>
-          <p class="text-gray-600 mb-4">IEEE Access</p>
-          <a href="https://ieeexplore.ieee.org/document/10870237" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2023" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2023</span>
-          <h3 class="text-lg font-semibold mb-3">The Potential of Digital Screening Tools for Childhood ADHD</h3>
-          <p class="text-gray-600 mb-4">Healthcare, MDPI</p>
-          <a href="https://www.mdpi.com/2227-9032/11/20/2795" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2023" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2023</span>
-          <h3 class="text-lg font-semibold mb-3">Serious game for the screening of central auditory processing disorder</h3>
-          <p class="text-gray-600 mb-4">JMIR Serious Games</p>
-          <a href="https://games.jmir.org/2023/1/e40284/" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2022" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2022</span>
-          <h3 class="text-lg font-semibold mb-3">A collaborative semantic framework based on activities</h3>
-          <p class="text-gray-600 mb-4">Future Generation Computer Systems. Elsevier</p>
-          <a href="https://dl.acm.org/doi/10.1016/j.future.2022.10.027" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2021" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2021</span>
-          <h3 class="text-lg font-semibold mb-3">Trusted analysis framework requirements in clinical settings</h3>
-          <p class="text-gray-600 mb-4">IEEE-EMBS International Conference on Biomedical and Health Informatics (BHI'21)</p>
-        </div>
-        <div class="publication-card bg-white rounded-lg shadow-md p-6" data-year="2020" data-aos="fade-up">
-          <span class="publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4">2020</span>
-          <h3 class="text-lg font-semibold mb-3">Creation of an Intelligent System to Support the Therapy Process</h3>
-          <p class="text-gray-600 mb-4">Information and Communication Technologies. TICEC, Springer</p>
-          <a href="https://link.springer.com/chapter/10.1007/978-3-030-62833-8_4" class="publication-link hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt"></i>Read Paper
-          </a>
         </div>
       </div>
     </div>
@@ -392,6 +333,64 @@
 
     menuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
+    });
+
+    const userId = '17438267'; 
+    const style = 'ieee'; // Puedes cambiar el estilo: apa, ieee, vancouver, etc.
+
+    let zoteroEntries = []; // Aquí guardaremos todas las entradas
+    let zoteroYears = new Set();
+
+    function renderZoteroEntries(year = 'all') {
+      const ul = document.getElementById('bibliografia');
+      ul.innerHTML = '';
+      zoteroEntries.forEach(entry => {
+        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
+        if (year === 'all' || entryYear === year) {
+          const li = document.createElement('li');
+          li.innerHTML = entry.innerHTML;
+          ul.appendChild(li);
+        }
+      });
+    }
+
+    function populateYearFilter() {
+      const yearFilter = document.getElementById('year-filter');
+      // Elimina todas las opciones excepto "All years"
+      yearFilter.innerHTML = '<option value="all">All years</option>';
+      // Ordena los años de mayor a menor
+      const yearsSorted = Array.from(zoteroYears).sort((a, b) => b - a);
+      yearsSorted.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+      });
+    }
+
+    fetch(`https://api.zotero.org/users/${userId}/items?format=bib&style=${style}`)
+      .then(response => response.text())
+      .then(data => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = data;
+        zoteroEntries = Array.from(tempDiv.querySelectorAll('.csl-entry'));
+        zoteroYears = new Set();
+        zoteroEntries.forEach(entry => {
+          const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
+          if (entryYear) zoteroYears.add(entryYear);
+        });
+        populateYearFilter();
+        renderZoteroEntries(); // Muestra todos al principio
+      })
+      .catch(error => {
+        document.getElementById('bibliografia').innerHTML = 'No se pudo cargar la bibliografía.';
+        console.error(error);
+      });
+
+    // Filtro de año para Zotero
+    yearFilter.addEventListener('change', () => {
+      const selectedYear = yearFilter.value;
+      renderZoteroEntries(selectedYear);
     });
   </script>
 </body>
