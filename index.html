@@ -368,10 +368,59 @@
           yearTag.textContent = entryYear;
           card.appendChild(yearTag);
         }
-        // Añade el contenido de la cita
-        const content = document.createElement('div');
-        content.innerHTML = entry.innerHTML;
-        card.appendChild(content);
+        // Extrae título, fuente y enlace del HTML de Zotero
+        // El título suele estar en <i> o <span class="title">, la fuente en <i> o tras el título, y el enlace en <a>
+        const temp = document.createElement('div');
+        temp.innerHTML = entry.innerHTML;
+        let title = '';
+        let source = '';
+        let link = '';
+        // Busca el primer <a> como enlace externo
+        const a = temp.querySelector('a');
+        if (a) {
+          link = a.href;
+        }
+        // Busca el primer <i> como fuente (revista/congreso)
+        const i = temp.querySelector('i');
+        if (i) {
+          source = i.textContent;
+        }
+        // El título suele estar antes del <i> o en <span class="title">
+        const spanTitle = temp.querySelector('span.title');
+        if (spanTitle) {
+          title = spanTitle.textContent;
+        } else {
+          // Si no, busca el texto antes del <i>
+          const html = temp.innerHTML;
+          if (i) {
+            title = html.split(i.outerHTML)[0].replace(/<[^>]+>/g, '').trim();
+          } else {
+            // Si no hay <i>, toma todo el texto
+            title = temp.textContent.trim();
+          }
+        }
+        // Crea el bloque de título
+        const h3 = document.createElement('h3');
+        h3.className = 'text-lg font-semibold mb-3';
+        h3.textContent = title;
+        card.appendChild(h3);
+        // Fuente (revista/congreso)
+        if (source) {
+          const p = document.createElement('p');
+          p.className = 'text-gray-600 mb-4';
+          p.textContent = source;
+          card.appendChild(p);
+        }
+        // Enlace externo
+        if (link) {
+          const aTag = document.createElement('a');
+          aTag.href = link;
+          aTag.className = 'publication-link hover:text-blue-800';
+          aTag.target = '_blank';
+          aTag.rel = 'noopener noreferrer';
+          aTag.innerHTML = '<i class="fas fa-external-link-alt"></i>Read Paper';
+          card.appendChild(aTag);
+        }
         container.appendChild(card);
       });
     }
