@@ -358,7 +358,7 @@
       filtered.slice(0, 8).forEach(entry => {
         // Crea la tarjeta
         const card = document.createElement('div');
-        card.className = 'publication-card bg-white rounded-lg shadow-md p-6';
+        card.className = 'publication-card bg-white rounded-lg shadow-md p-6 cursor-pointer transition hover:shadow-lg';
         // Extrae el año
         const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
         // Añade la etiqueta de año si existe
@@ -430,6 +430,13 @@
           aTag.rel = 'noopener noreferrer';
           aTag.innerHTML = '<i class="fas fa-external-link-alt"></i>Read Paper';
           card.appendChild(aTag);
+          // Hace toda la tarjeta clicable
+          card.addEventListener('click', function(e) {
+            // Evita doble apertura si se hace click en el enlace interno
+            if (!e.target.closest('a')) {
+              window.open(link, '_blank');
+            }
+          });
         }
         container.appendChild(card);
       });
