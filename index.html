@@ -136,8 +136,6 @@
   <section id="publications" class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12 text-center" data-aos="fade-up">Scientific Articles</h2>
-      <ul id="bibliografia"></ul>
-
       <div class="mb-8 flex justify-center" data-aos="fade-up">
         <div class="inline-flex rounded-md shadow-sm">
           <select id="year-filter" class="bg-white border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -146,6 +144,7 @@
           </select>
         </div>
       </div>
+      <div id="bibliografia" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
     </div>
   </section>
 
@@ -342,15 +341,38 @@
     let zoteroYears = new Set();
 
     function renderZoteroEntries(year = 'all') {
-      const ul = document.getElementById('bibliografia');
-      ul.innerHTML = '';
-      zoteroEntries.forEach(entry => {
+      const container = document.getElementById('bibliografia');
+      container.innerHTML = '';
+      // Filtra por año si corresponde
+      let filtered = zoteroEntries.filter(entry => {
         const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
-        if (year === 'all' || entryYear === year) {
-          const li = document.createElement('li');
-          li.innerHTML = entry.innerHTML;
-          ul.appendChild(li);
+        return year === 'all' || entryYear === year;
+      });
+      // Ordena por año descendente (más reciente primero)
+      filtered.sort((a, b) => {
+        const yearA = (a.textContent.match(/\b(19|20)\d{2}\b/) || [0])[0];
+        const yearB = (b.textContent.match(/\b(19|20)\d{2}\b/) || [0])[0];
+        return yearB - yearA;
+      });
+      // Solo los 8 primeros
+      filtered.slice(0, 8).forEach(entry => {
+        // Crea la tarjeta
+        const card = document.createElement('div');
+        card.className = 'publication-card bg-white rounded-lg shadow-md p-6';
+        // Extrae el año
+        const entryYear = (entry.textContent.match(/\b(19|20)\d{2}\b/) || [])[0];
+        // Añade la etiqueta de año si existe
+        if (entryYear) {
+          const yearTag = document.createElement('span');
+          yearTag.className = 'publication-year-tag inline-block px-3 py-1 text-sm font-semibold rounded-full mb-4';
+          yearTag.textContent = entryYear;
+          card.appendChild(yearTag);
         }
+        // Añade el contenido de la cita
+        const content = document.createElement('div');
+        content.innerHTML = entry.innerHTML;
+        card.appendChild(content);
+        container.appendChild(card);
       });
     }
 
