@@ -607,7 +607,7 @@
       });
     }
 
-    fetch(`https://api.zotero.org/users/${userId}/items?format=json`)
+    fetch(`https://api.zotero.org/users/${userId}/collections/VDPHNQJ4/items?format=json`)
       .then(response => response.json())
       .then(data => {
         zoteroItems = data;
