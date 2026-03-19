@@ -13,13 +13,14 @@
 
 /* Dark theme variables */
 [data-theme="dark"] {
-  --primary-color: #60a5fa;
-  --secondary-color: #3b82f6;
-  --text-color: #f3f4f6;
-  --bg-color: #111827;
-  --light-bg: #1f2937;
-  --card-bg: #1e293b;
-  --border-color: #374151;
+  --primary-color: #d8b4fe;
+  --secondary-color: #c084fc;
+  --text-color: #e5e7eb;
+  --bg-color: #0f172a;
+  --light-bg: #1e293b;
+  --card-bg: #1a1f35;
+  --border-color: #334155;
+  --accent-color: #d8b4fe;
 }
 
 * {
@@ -92,8 +93,9 @@ header {
 }
 
 [data-theme="dark"] header {
+  background-color: #0f172a;
   background-image: 
-    linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(30, 64, 175, 0.05) 100%);
+    linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
 }
 
 /* Animated background */
@@ -361,6 +363,17 @@ header {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+[data-theme="dark"] .theme-toggle {
+  background-color: #d8b4fe;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(216, 180, 254, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  box-shadow: 0 4px 12px rgba(216, 180, 254, 0.4);
+  background-color: #e9d5ff;
+}
+
 /* Skill Tags */
 .skill-tag {
   display: inline-block;
@@ -376,6 +389,16 @@ header {
   background-color: #C76ACE;
   color: white;
   transform: translateY(-2px);
+}
+
+[data-theme="dark"] .skill-tag {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #d8b4fe;
+}
+
+[data-theme="dark"] .skill-tag:hover {
+  background-color: #d8b4fe;
+  color: #0f172a;
 }
 
 /* Responsive Design */
@@ -424,6 +447,52 @@ header {
 
 .slide-in {
   animation: slideIn 0.6s ease-out forwards;
+}
+
+/* Dark mode overrides for Tailwind bg-white classes */
+[data-theme="dark"] .bg-white {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] section {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .submenu {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .submenu-mobile {
+  background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] select {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .publication-card {
+  background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
 }
 
 /* Print Styles */
@@ -489,9 +558,29 @@ header {
   margin-bottom: 0.5rem;
 }
 
+[data-theme="dark"] .education-year {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #d8b4fe;
+}
+
 /* Footer */
 footer {
   background-color: #48264A;
+  color: white;
+}
+
+[data-theme="dark"] footer {
+  background-color: #1a1f35;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] footer a {
+  color: #d8b4fe;
+}
+
+[data-theme="dark"] footer a:hover {
+  color: #e9d5ff;
 }
 
 /* Navigation hover effect */
@@ -509,6 +598,10 @@ footer {
   left: 0;
   background-color: #48264A;
   transition: width 0.3s ease;
+}
+
+[data-theme="dark"] .nav-link::after {
+  background-color: #d8b4fe;
 }
 
 .nav-link:hover::after {
@@ -538,4 +631,15 @@ footer {
   background-color: #b44ebb;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] #back-to-top {
+  background-color: #d8b4fe;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(216, 180, 254, 0.3);
+}
+
+[data-theme="dark"] #back-to-top:hover {
+  background-color: #e9d5ff;
+  box-shadow: 0 4px 12px rgba(216, 180, 254, 0.4);
 }
