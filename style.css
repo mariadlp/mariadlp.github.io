@@ -365,7 +365,7 @@ header {
 }
 
 [data-theme="dark"] .theme-toggle {
-  background-color: #d8b4fe;
+  background-color: #C76ACE;
   color: #0f172a;
   box-shadow: 0 2px 8px rgba(216, 180, 254, 0.3);
 }
@@ -653,7 +653,7 @@ footer {
 }
 
 [data-theme="dark"] #back-to-top {
-  background-color: #d8b4fe;
+  background-color: #C76ACE;
   color: #0f172a;
   box-shadow: 0 2px 8px rgba(216, 180, 254, 0.3);
 }
