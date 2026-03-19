@@ -458,7 +458,26 @@ header {
 
 [data-theme="dark"] section {
   background-color: var(--bg-color) !important;
-  color: var(--text-color);
+  color: var(--text-color) !important;
+}
+
+/* Override all text gray classes */
+[data-theme="dark"] .text-gray-400,
+[data-theme="dark"] .text-gray-500,
+[data-theme="dark"] .text-gray-600,
+[data-theme="dark"] .text-gray-700,
+[data-theme="dark"] .text-slate-400,
+[data-theme="dark"] .text-slate-500,
+[data-theme="dark"] .text-slate-600 {
+  color: #ffffff !important;
+}
+
+/* Override all p and span elements */
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] div {
+  color: var(--text-color) !important;
 }
 
 [data-theme="dark"] .submenu {
