@@ -517,6 +517,11 @@ header {
   color: #ffffff !important;
 }
 
+/* Justified text for About me section */
+.prose p {
+  text-align: justify;
+}
+
 [data-theme="dark"] .submenu-mobile a {
   color: #ffffff !important;
 }
