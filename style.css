@@ -498,6 +498,25 @@ header {
   background-color: #C76ACE !important;
 }
 
+/* Status badges visibility in dark mode */
+[data-theme="dark"] .bg-green-100 {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-green-800 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bg-yellow-100 {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-yellow-800 {
+  color: #ffffff !important;
+}
+
 [data-theme="dark"] .submenu-mobile a {
   color: #ffffff !important;
 }
